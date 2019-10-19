@@ -27,6 +27,7 @@ class App {
         mongoose.connect('mongodb://localhost:27017/reddit', {
             useUnifiedTopology: true,
             useNewUrlParser: true,
+            useFindAndModify: false
         });
     }
     

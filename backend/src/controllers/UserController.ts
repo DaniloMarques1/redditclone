@@ -1,4 +1,4 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import UserModel from '../models/UserModel';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
@@ -55,7 +55,6 @@ export default class UserController {
         const { email, name, password } = req.body;
         
         const UserAuth = <AuthUser>jsonwebtoken.verify(<string>token, Config.privateKey());
-        console.log(UserAuth.id)
         
         const passwordHashed = await bcrypt.hash(password, 10);
         
