@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.form`
+export const Container = styled.div`
     height: 90vh;
     display: flex;
     flex-direction: column;
@@ -9,10 +9,13 @@ export const Container = styled.form`
 `
 
 
-export const FormContainer = styled.div`
+export const FormContainer = styled.form`
     background-color: #fff;
     padding: 60px 100px;
     border-radius: 4px;
+    @media(max-width: 500px) {
+        padding: 30px 20px;
+    }
 `
 
 export const Input = styled.input `
@@ -30,6 +33,10 @@ export const Input = styled.input `
         outline: none;
     }
     
+    @media (max-width: 500px) {
+        width: 250px;
+    }
+
 `
 
 export const Label = styled.label `
