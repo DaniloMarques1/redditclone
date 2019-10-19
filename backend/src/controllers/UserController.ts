@@ -20,7 +20,7 @@ export default class UserController {
         let user = await UserModel.findOne({ email });
         
         if (user) {
-            return res.json({message: 'e-mail already taken'});
+            return res.status(400).json({message: 'e-mail already taken'});
         }
         
         user = await UserModel.create({
