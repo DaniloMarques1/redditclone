@@ -15,7 +15,7 @@ export default class UserController {
     
     public static async store(req: Request, res: Response) {
         const { name, email, password } = req.body;
-        const passWordHashed = await bcrypt.hash(<string>password, 10);
+        const passwordHashed = await bcrypt.hash(<string>password, 10);
         
         let user = await UserModel.findOne({ email });
         
@@ -26,7 +26,7 @@ export default class UserController {
         user = await UserModel.create({
             name,
             email,
-            password: passWordHashed,
+            password: passwordHashed,
         });
         
         return res.json(user);
@@ -57,9 +57,9 @@ export default class UserController {
         const UserAuth = <AuthUser>jsonwebtoken.verify(<string>token, Config.privateKey());
         console.log(UserAuth.id)
         
-        const passWordHashed = await bcrypt.hash(password, 10);
+        const passwordHashed = await bcrypt.hash(password, 10);
         
-        const user = await UserModel.findOneAndUpdate({_id: UserAuth.id}, {email, name, password: passWordHashed});
+        const user = await UserModel.findOneAndUpdate({_id: UserAuth.id}, {email, name, password: passwordHashed});
 
         return res.json(user);
     }
