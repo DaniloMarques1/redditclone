@@ -17,11 +17,12 @@ export default function Login({ history }) {
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            await api.post('/user', {
+            const response = await api.post('/user', {
                 email,
                 password
             });
-            
+            const { token } = response.data;
+            saveToken(token);
             history.push('/')
 
         } catch(error) {
@@ -30,6 +31,8 @@ export default function Login({ history }) {
 
 
     }
+
+    const saveToken = (token) => localStorage.setItem('token', token)
 
     return (
         <>
