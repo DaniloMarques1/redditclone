@@ -2,12 +2,20 @@ import {Request, Response} from 'express';
 import UserModel from '../models/UserModel';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
-const privateKey = "smdkndsndksndknskdnskdnskndksndknsdknsnds";
+import Config from '../config/config';
+import { AuthUser } from '../interfaces/AuthUser';
 
 export default class UserController {
+    
+    public static async index(req: Request, res: Response) {
+        const users = await UserModel.find();
+
+        return res.json(users);
+    }
+    
     public static async store(req: Request, res: Response) {
         const { name, email, password } = req.body;
-        const passWordHashed = await bcrypt.hash(String(password), 10);
+        const passWordHashed = await bcrypt.hash(<string>password, 10);
         
         let user = await UserModel.findOne({ email });
         
@@ -30,19 +38,30 @@ export default class UserController {
         const user = await UserModel.findOne({ email });
         
         if(user) {
-            const match = await bcrypt.compare(String(password), user.password);
+            const match = await bcrypt.compare(<string>password, user.password);
             const {id, name} = user;
 
             if(match) {
-                const token = jsonwebtoken.sign({id, name, email}, privateKey);
+                const token = jsonwebtoken.sign(<AuthUser>{id, name, email}, Config.privateKey());
                 return res.json({token: token});
             }
         } 
 
-        return res.status(404).json({message: "No user found"});
-        
+        return res.status(401).json({message: "Email or password incorrect"});
+    }
 
+    public static async update(req: Request, res: Response) {
+        const { token } = req.headers;
+        const { email, name, password } = req.body;
         
+        const UserAuth = <AuthUser>jsonwebtoken.verify(<string>token, Config.privateKey());
+        console.log(UserAuth.id)
+        
+        const passWordHashed = await bcrypt.hash(password, 10);
+        
+        const user = await UserModel.findOneAndUpdate({_id: UserAuth.id}, {email, name, password: passWordHashed});
+
+        return res.json(user);
     }
 
 }
