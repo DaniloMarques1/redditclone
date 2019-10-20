@@ -14,7 +14,7 @@ export default class UserController {
     }
     
     public static async store(req: Request, res: Response) {
-        const { name, email, password } = req.body;
+        const { nickName, name, email, password } = req.body;
         const passwordHashed = await bcrypt.hash(<string>password, 10);
         
         let user = await UserModel.findOne({ email });
@@ -24,6 +24,7 @@ export default class UserController {
         }
         
         user = await UserModel.create({
+            nickName,
             name,
             email,
             password: passwordHashed,
