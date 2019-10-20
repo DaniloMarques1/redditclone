@@ -10,6 +10,7 @@ import {
 } from '../../Styles/formStyles'
 
 export default function Register({ history }) {
+    const [nickName, setNickName] = useState('');
     const [name, setName]   = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -20,6 +21,7 @@ export default function Register({ history }) {
         
         try {
             await api.post('/user/new', {
+                nickName,
                 name,
                 email,
                 password
@@ -38,6 +40,15 @@ export default function Register({ history }) {
             <Navbar />
             <Container>
                 <FormContainer onSubmit={handleRegister}>
+                <Label htmlFor="nickName">Your Nickname</Label>
+                    <Input
+                    value={nickName}
+                    onChange={(e) => setNickName(e.target.value)}
+                    id='nickName'
+                    type='text'
+                    placeholder='coolnickname'
+                    length='70'
+                    />
                     <Label htmlFor="name">Your Name</Label>
                     <Input
                     value={name}
