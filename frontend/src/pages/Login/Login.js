@@ -9,10 +9,13 @@ import {
     Button,
 } from '../../Styles/formStyles'
 
+import Alert from '../../components/Alert/Alert';
+
 export default function Login({ history }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -26,7 +29,8 @@ export default function Login({ history }) {
             history.push('/')
 
         } catch(error) {
-            console.log( error.response.data);
+            //TODO: Alert message
+            setErrorMessage(error.response.data.message);
         }
 
 
@@ -39,6 +43,7 @@ export default function Login({ history }) {
             <Navbar />
             <Container>
                 <FormContainer onSubmit={handleLogin}>
+                    {errorMessage ? (<Alert message={errorMessage} />) : ''}
                     <Label htmlFor="email">Your email</Label>
                     <Input
                     value={email}

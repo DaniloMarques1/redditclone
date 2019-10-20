@@ -9,16 +9,29 @@ import {
     Button,
 } from '../../Styles/formStyles'
 
+import Alert from '../../components/Alert/Alert';
+
 export default function Register({ history }) {
     const [nickName, setNickName] = useState('');
     const [name, setName]   = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+    const [errorBackground, setErrorBackground] = useState('');
+    const [errorColor, setErrorColor] = useState('');
 
     const handleRegister = async (e) => {
         e.preventDefault();
         
+        //TODO verficar se as senhas batem
+
+        if(password !== confirmPassword) {
+            setErrorBackground('#980010');
+            setErrorColor('white')
+            return false;
+        }
+
         try {
             await api.post('/user/new', {
                 nickName,
@@ -29,10 +42,10 @@ export default function Register({ history }) {
             history.push('/login');
 
         } catch(error) {
-            console.log(error.response.data);
+            //TODO: Alert message
+            setErrorMessage(error.response.data.message);
+            
         }
-      
-
     }
 
     return (
@@ -40,11 +53,13 @@ export default function Register({ history }) {
             <Navbar />
             <Container>
                 <FormContainer onSubmit={handleRegister}>
+                {errorMessage ? (<Alert message={errorMessage} />) : ''}
                 <Label htmlFor="nickName">Your Nickname</Label>
                     <Input
                     value={nickName}
                     onChange={(e) => setNickName(e.target.value)}
                     id='nickName'
+                    required
                     type='text'
                     placeholder='coolnickname'
                     length='70'
@@ -52,6 +67,7 @@ export default function Register({ history }) {
                     <Label htmlFor="name">Your Name</Label>
                     <Input
                     value={name}
+                    required
                     onChange={(e) => setName(e.target.value)}
                     id='name'
                     type='text'
@@ -62,6 +78,7 @@ export default function Register({ history }) {
                     <Input
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    required
                     id='email'
                     type='email'
                     placeholder='email@domain.com'
@@ -70,6 +87,7 @@ export default function Register({ history }) {
                     <Label htmlFor="password">Your password</Label>
                     <Input
                     value={password}
+                    required
                     onChange={(e) => setPassword(e.target.value)}
                     id='password'
                     type='password'
@@ -78,7 +96,9 @@ export default function Register({ history }) {
                     />
                     <Label htmlFor="confirmPassword">Confirm password</Label>
                     <Input
+                    style={{backgroundColor: errorBackground, color: errorColor}}
                     value={confirmPassword}
+                    required
                     onChange={(e) => setConfirmPassword(e.target.value)}
                     id='confirmPassword'
                     type='password'
