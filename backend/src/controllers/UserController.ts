@@ -55,10 +55,9 @@ export default class UserController {
         const { token } = req.headers;
         const { email, name, password } = req.body;
         
-        const UserAuth = <AuthUser>jsonwebtoken.verify(<string>token, Config.privateKey());
-        
+        const UserAuth = Config.getUser(<string>token);
         const passwordHashed = await bcrypt.hash(password, 10);
-        
+
         const user = await UserModel.findOneAndUpdate({_id: UserAuth.id}, {email, name, password: passwordHashed});
 
         return res.json(user);

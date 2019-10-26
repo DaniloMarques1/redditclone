@@ -16,8 +16,7 @@ export default class PostController {
         const { token } = req.headers;
         const { title, content, category } = req.body;
         
-        const user = <AuthUser>jsonwebtoken.verify(<string>token, Config.privateKey());
-
+        const user = Config.getUser(<string>token);
         const post = await PostModel.create({
             title,
             content,
@@ -25,7 +24,6 @@ export default class PostController {
             category
         });
         
-
         return res.json(post);
     }
 }
