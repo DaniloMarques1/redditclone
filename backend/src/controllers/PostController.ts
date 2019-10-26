@@ -9,7 +9,7 @@ export default class PostController {
             path: 'comments',
             populate: {
                 path: 'user',
-                select: 'name'
+                select: 'name -_id'
             }
         }).then((post) => {
             return res.json(post);
@@ -29,6 +29,12 @@ export default class PostController {
         });
         
         return res.json(post);
+    }
+
+    public static async show(req: Request, res: Response) {
+        //TODO: return an specific post
+        const { id } = req.params;
+        
     }
 
     public static async destroy(req: Request, res: Response) {
