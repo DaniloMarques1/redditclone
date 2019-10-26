@@ -41,9 +41,11 @@ Response
 ```
 
 * POST /post/new - Cria um novo post
+* GET /post - Retorna todos os posts
+
 
 **/post/new**  
-Request
+Request - **token** deve ser enviado no header
 ```json
 {
   "title": "Title of the post",
@@ -52,3 +54,40 @@ Request
 }
 ```
 Response  
+
+```json
+{
+  "_id": "5db3a009a0ffa02ae2dfd74e",
+  "title": "Side Projects",
+  "content": "Fala pessoal, alguem a fim de criar um projetinho? pode ser um clone de algo legal!",
+  "user": "5daa4ac78c0a3c1ae54543b2",
+  "category": "5db38dc570754118f292a98d",
+  "__v": 0
+}
+```
+**/post** Response
+
+```json
+[
+  {
+    "_id": "5db39ab7a63eec25637baca0",
+    "title": "How you guys learned mern stack?",
+    "content": "Hey guys, i'm curious about how you all learn mern stack",
+    "user": {
+      "_id": "5dac777ea6a1241e720d3f75",
+      "nickName": "simbazinho",
+      "name": "Simba Lion",
+      "email": "simba@gmail.com",
+      "password": "$2b$10$y3AF683z4j8XtfF0sSBKFu7LxIRDCAXF7qXqbE8iqEtJRoFxOUSta",
+      "__v": 0
+    },
+    "category": {
+      "_id": "5db38dc570754118f292a98d",
+      "name": "programming",
+      "__v": 0
+    },
+    "__v": 0
+  }
+  
+]
+```
