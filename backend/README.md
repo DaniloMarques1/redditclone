@@ -1,3 +1,7 @@
+## Iniciar a api
+
+Para iniciar a api basta clonar o repositorio, baixar as dependencias com o comando **yarn** e executar o servidor com o comando **yarn dev**.
+
 ## Endpoints para a api
 
 * POST /user/new - Cria um novo usuario

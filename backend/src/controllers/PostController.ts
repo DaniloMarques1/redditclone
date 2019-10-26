@@ -1,14 +1,19 @@
 import { Request, Response } from 'express';
 import { PostModel } from '../models/PostModel';
 import Config from '../config/config';
-import PostInterface from '../interfaces/PostInterface';
+
 
 export default class PostController {
     public static async index(req: Request, res: Response) {
-        PostModel.find().populate('user').populate('category').then((post) => {
+        PostModel.find().populate('user').populate('category').populate({
+            path: 'comments',
+            populate: {
+                path: 'user',
+                select: 'name'
+            }
+        }).then((post) => {
             return res.json(post);
-        });
-        
+        });  
     }
 
     public static async store(req: Request, res: Response) {

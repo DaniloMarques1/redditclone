@@ -2,6 +2,7 @@ import { Router } from 'express';
 import UserController from './controllers/UserController';
 import CategoryController from './controllers/CategoryController';
 import PostController from './controllers/PostController';
+import CommentController from './controllers/CommentController';
 
 const routes = Router();
 
@@ -19,5 +20,8 @@ routes.get('/category', CategoryController.index);
 routes.post('/post/new', PostController.store);
 routes.get('/post', PostController.index);
 routes.delete('/post/:id', PostController.destroy);
+
+//COMMENTS
+routes.post('/post/:id/comment', CommentController.store);
 
 export default routes;
