@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model } from 'mongoose';
 import PostInterface from '../interfaces/PostInterface';
 
 const PostSchema = new Schema({
@@ -18,5 +18,4 @@ const PostSchema = new Schema({
     }
 });
 
-
-export default model<PostInterface>('Post', PostSchema);
+export const PostModel: Model<PostInterface> = model<PostInterface>('Post', PostSchema);

@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Model } from 'mongoose';
 import { UserInterface }  from '../interfaces/UserInterface'
 
 const UserSchema = new Schema({
@@ -20,4 +20,4 @@ const UserSchema = new Schema({
     password: String
 });
 
-export default model<UserInterface>('User', UserSchema);
+export const UserModel: Model<UserInterface> = model<UserInterface>('User', UserSchema);
