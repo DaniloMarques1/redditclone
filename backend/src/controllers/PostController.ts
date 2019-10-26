@@ -1,8 +1,7 @@
 import { Request, Response } from 'express';
-import PostModel from '../models/PostModel';
-import { AuthUser } from '../interfaces/AuthUser';
-import jsonwebtoken from 'jsonwebtoken';
+import { PostModel } from '../models/PostModel';
 import Config from '../config/config';
+import PostInterface from '../interfaces/PostInterface';
 
 export default class PostController {
     public static async index(req: Request, res: Response) {
@@ -25,5 +24,26 @@ export default class PostController {
         });
         
         return res.json(post);
+    }
+
+    public static async destroy(req: Request, res: Response) {
+        const { token } = req.headers;
+        const { id } = req.params; // id do post
+        const user = Config.getUser(<string>token);
+        await PostModel.findById(id).populate('user').then(async (post)  => {
+            if (post) {
+                if (post.user.id !== user.id) {
+                    return res.status(401).json({message: "Only who created the post can delete it"});
+                }
+        
+                const deletedPost = await PostModel.findByIdAndDelete(id);
+                return res.json(deletedPost);
+        
+            } else {
+                return res.status(404).json({message: "Post not found"})
+            }
+
+        });
+    
     }
 }

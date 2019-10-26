@@ -42,7 +42,7 @@ Response
 
 * POST /post/new - Cria um novo post
 * GET /post - Retorna todos os posts
-
+* DELETE /post/{id} - Deleta o post do id passado (token deve ser passado no header)
 
 **/post/new**  
 Request - **token** deve ser enviado no header

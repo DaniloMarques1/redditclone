@@ -18,5 +18,6 @@ routes.get('/category', CategoryController.index);
 //POSTS
 routes.post('/post/new', PostController.store);
 routes.get('/post', PostController.index);
+routes.delete('/post/:id', PostController.destroy);
 
 export default routes;

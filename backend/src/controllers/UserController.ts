@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserModel from '../models/UserModel';
+import { UserModel } from '../models/UserModel';
 import bcrypt from 'bcrypt';
 import jsonwebtoken from 'jsonwebtoken';
 import Config from '../config/config';
@@ -37,7 +37,7 @@ export default class UserController {
         const { email, password } = req.body;
         
         const user = await UserModel.findOne({ email });
-        
+
         if(user) {
             const match = await bcrypt.compare(<string>password, user.password);
             const {id, name} = user;
