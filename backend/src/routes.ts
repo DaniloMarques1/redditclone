@@ -20,6 +20,7 @@ routes.get('/category', CategoryController.index);
 routes.post('/post/new', PostController.store);
 routes.get('/post', PostController.index);
 routes.delete('/post/:id', PostController.destroy);
+routes.get('/post/:id', PostController.show);
 
 //COMMENTS
 routes.post('/post/:id/comment', CommentController.store);

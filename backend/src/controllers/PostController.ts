@@ -32,9 +32,20 @@ export default class PostController {
     }
 
     public static async show(req: Request, res: Response) {
-        //TODO: return an specific post
         const { id } = req.params;
+        const post = await PostModel.findById(id)
+        .populate({path: 'user', select:'name -_id'})
+        .populate({path: 'category', select:'name -_id'})
+        .populate({path: 'comments', populate: {
+            path: 'user',
+            select: 'name -_id'
+        }});
+
+        if (!post) {
+            return res.status(404).json({message: "Post not found!"});
+        }
         
+        res.json(post);
     }
 
     public static async destroy(req: Request, res: Response) {
@@ -56,5 +67,12 @@ export default class PostController {
 
         });
     
+    }
+
+    public static async update(req: Request, res: Response) {
+        //TODO: Logica para atualização de um post
+        const { token } = req.headers;
+        const { id } = req.params;
+        
     }
 }
