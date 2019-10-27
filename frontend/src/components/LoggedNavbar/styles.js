@@ -35,6 +35,20 @@ export const Nav = styled.nav `
         margin: 0;
     }
     
+    @media (max-width: 350px) {
+        ul > li > a {
+            font-size: 13px;
+        }
+        img {
+            width: 20px;
+            height: 20px;
+        }
+
+        span {
+            font-size: 14px;
+        }
+    }
+
 `
 
 export const SearchDiv = styled.div`
