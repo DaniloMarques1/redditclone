@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { Link } from 'react-router-dom'
 import LoggedNavbar from '../../components/LoggedNavbar/LoggedNavbar';
 import api from '../../services/api';
 
@@ -37,7 +37,7 @@ export default function Home({ history }) {
             <LoggedNavbar />
             <main>
                 <NewPostButton>
-                    New post
+                    <Link to='/create'>New post</Link>
                 </NewPostButton>
                 <Section>
                     <PostsDiv>

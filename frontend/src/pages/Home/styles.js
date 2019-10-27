@@ -12,6 +12,10 @@ export const NewPostButton = styled.button`
         display: table;
         margin: 10px auto;
     }
+    a {
+        text-decoration: none;
+        color: #000;
+    }
 `
 export const Section = styled.div`
     display: grid;
