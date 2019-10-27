@@ -7,7 +7,8 @@ import {
     NewPostButton,
     PostsDiv,
     Section,
-    Categories
+    Categories,
+    Post
 } from './styles';
 
 export default function Home({ history }) {
@@ -41,8 +42,14 @@ export default function Home({ history }) {
                 <Section>
                     <PostsDiv>
                         {posts.map(post => (
-                            <p>{post.title}</p>
+                            <Post key={post._id}>
+                                <h3>{post.title}</h3>
+                                <div>
+                                    {post.content.slice(0, 100)}...
+                                </div>
+                            </Post>
                         ))}
+                        
                     </PostsDiv>
 
                     <Categories>

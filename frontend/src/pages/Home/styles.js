@@ -78,3 +78,18 @@ export const Categories = styled.div`
         display: none;
     }
 `
+
+export const Post = styled.div`
+    padding: 15px;
+    cursor: pointer;
+    h3 {
+        margin-bottom: 10px;
+    }
+    div {
+        border-radius: 3px;
+        border: 1px solid #E7E9EC;
+        padding: 12px;
+        font-size: 14px;
+    }
+    margin-bottom: 10px;
+`
