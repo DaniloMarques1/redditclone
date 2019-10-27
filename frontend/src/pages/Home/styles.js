@@ -86,9 +86,15 @@ export const Categories = styled.div`
 
 export const Post = styled.div`
     padding: 15px;
-    cursor: pointer;
+   
     h3 {
         margin-bottom: 10px;
+        color: #929191;
+        cursor: pointer;
+    }
+    h3:hover {
+        color: #605D5D;
+        transition: all .3s;
     }
     div {
         border-radius: 3px;
