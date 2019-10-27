@@ -2,10 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/logo.png';
+import Search from '../../assets/search.svg';
 
 import {
     Nav,
-    SearchInput
+    SearchInput,
+    SearchDiv,
 } from './styles'
 
 export default function LoggedNavbar() {
@@ -15,7 +17,10 @@ export default function LoggedNavbar() {
             <span>Reddit</span>
             <ul>
                 <li>
-                    <SearchInput type='text' />
+                    <SearchDiv>
+                        <input placeholder='Search for the title' type='text' /> 
+                        <span><img src={Search} alt="Search icon"/></span>
+                    </SearchDiv>
                 </li>
                 <li>
                     <Link to='/history'>

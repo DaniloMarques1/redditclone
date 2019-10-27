@@ -20,6 +20,7 @@ export const Nav = styled.nav `
     ul > li {
         list-style: none;
         margin: 0 12px;
+        align-self: center;
         
     }
     ul > li > a {
@@ -29,11 +30,37 @@ export const Nav = styled.nav `
     ul > li > a:hover {
         border-bottom: 1px solid #3565B0;
     }
+
+    li img {
+        margin: 0;
+    }
     
 `
 
-export const SearchInput = styled.input `
-    border: 1px solid #3565B0;
-    background-color: #fff;
-    
+export const SearchDiv = styled.div`
+    display: flex;
+    margin-right: 30px;
+    @media (max-width: 500px) {
+            display: none;
+    }
+    img {
+        width: 30px;
+        height: 30px;
+        margin: 0;
+        cursor: pointer;
+    }
+
+    input {
+        border: 1px solid #3565B0;
+        color: #3565B0;
+        background-color: #fff;
+        border-radius: 30px;
+        padding: 5px;
+        outline: none;
+        font-size: 13px;
+        margin-right: 5px;
+        input::placeholder {
+            color: #E7E9EC;
+        }
+    }
 `
