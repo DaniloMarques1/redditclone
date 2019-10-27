@@ -40,21 +40,15 @@ export const DivContent = styled.div `
     grid-area: content;
 `
 export const Content = styled.textarea `
-    width: 100%;
     height: 250px;
-    padding: 7px;
+    width: 98%;
+    padding: 4px;
     border: 1px solid #DEDDDD;
     outline: none;
     @media (max-width: 750px) {
         padding: 3px;
     }
 `
-
-export const Button = styled.button `
-   float: right;
-   margin-right: 10px;
-`
-
 export const DivButton = styled.div `
     grid-area: button;
 `

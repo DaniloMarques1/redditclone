@@ -4,7 +4,6 @@ import LoggedNav from '../../components/LoggedNavbar/LoggedNavbar';
 import {
     Form,
     Content,
-    
     DivTitle,
     DivCategory,
     DivContent,
