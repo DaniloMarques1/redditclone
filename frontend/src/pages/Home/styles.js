@@ -89,7 +89,18 @@ export const Post = styled.div`
         border-radius: 3px;
         border: 1px solid #E7E9EC;
         padding: 12px;
+    }
+    span {
         font-size: 14px;
     }
     margin-bottom: 10px;
+
+    @media (max-width: 600px) {
+        h3 {
+            font-size: 16px;
+        }
+        span {
+            font-size: 12px;
+        }
+    }
 `

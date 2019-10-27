@@ -44,8 +44,14 @@ export default function Home({ history }) {
                         {posts.map(post => (
                             <Post key={post._id}>
                                 <h3>{post.title}</h3>
+                                <span>Author: {post.user.nickName}</span>
                                 <div>
-                                    {post.content.slice(0, 100)}...
+                                    <span>
+                                        {
+                                            post.content.length > 100 ? (post.content.slice(0, 100)+'...') : (post.content)
+                                        } 
+
+                                    </span>
                                 </div>
                             </Post>
                         ))}
