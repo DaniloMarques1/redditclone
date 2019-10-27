@@ -52,3 +52,14 @@ export const Content = styled.textarea `
 export const DivButton = styled.div `
     grid-area: button;
 `
+
+export const Select = styled.select `
+    border: 1px solid #DEDDDD;
+    outline: none;
+    padding: 10px;
+    display: block;
+    background-color: #fff;
+    border-radius: 4px;
+    width: 100%;
+    height: 
+`

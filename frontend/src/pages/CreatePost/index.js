@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LoggedNav from '../../components/LoggedNavbar/LoggedNavbar';
 
 import {
@@ -8,7 +8,8 @@ import {
     DivCategory,
     DivContent,
     Main,
-    DivButton
+    DivButton,
+    Select,
 } from './styles'
 
 import {
@@ -21,6 +22,17 @@ import api from '../../services/api';
 
 
 export default function CreatePost() {
+    const [categories, setCategories] = useState([]);
+
+    useEffect(() => {
+        async function getCatgories() {
+            const response = await api.get('/category');
+            setCategories(response.data);
+        }
+        getCatgories();
+    }, [])
+
+
     return (
         <>
             <LoggedNav />
@@ -32,7 +44,11 @@ export default function CreatePost() {
                     </DivTitle>
                     <DivCategory>
                         <Label>Category</Label>
-                        <Input />
+                        <Select>
+                            {categories.map(category => (
+                                <option key={category._id}>{category.name}</option>
+                            ))}
+                        </Select>
                     </DivCategory>
                     <DivContent>        
                         <Content placeholder='Your thoughts...'></Content>
