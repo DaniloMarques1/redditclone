@@ -12,7 +12,10 @@ import {
 export default function LoggedNavbar() {
     return (
         <Nav>
-            <img src={Logo} alt='Logo do reddit' />
+            <Link to='/'>
+                <img src={Logo} alt='Logo do reddit' />
+            </Link>
+            
             <span>Reddit</span>
             <ul>
                 <li>
