@@ -6,7 +6,6 @@ import Search from '../../assets/search.svg';
 
 import {
     Nav,
-    SearchInput,
     SearchDiv,
 } from './styles'
 
