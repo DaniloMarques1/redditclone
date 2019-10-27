@@ -24,7 +24,6 @@ export const Input = styled.input `
     border-radius: 2px;
     padding: 10px;
     margin-bottom: 10px;
-    color: #3565B0;
     width: 300px;
     ::placeholder {
         color: #B1ACAC;
