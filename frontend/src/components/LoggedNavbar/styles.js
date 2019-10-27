@@ -66,7 +66,6 @@ export const SearchDiv = styled.div`
 
     input {
         border: 1px solid #3565B0;
-        color: #3565B0;
         background-color: #fff;
         border-radius: 30px;
         padding: 5px;

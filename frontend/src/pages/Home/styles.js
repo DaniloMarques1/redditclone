@@ -35,7 +35,7 @@ export const PostsDiv = styled.div`
     grid-area: 'PostsDiv';
     grid-column-start: 2;
     grid-column-end: 2;
-    
+    border-radius: 4px;
     @media (max-width: 800px) {
         grid-column-start: 1;
         grid-column-end: 2;
@@ -55,6 +55,7 @@ export const Categories = styled.div`
     display: flex;
     padding: 10px 20px;
     flex-direction: column;
+    border-radius: 4px;
     h3 {
         align-self: center;
     }
