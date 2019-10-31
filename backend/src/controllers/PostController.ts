@@ -5,13 +5,7 @@ import Config from '../config/config';
 
 export default class PostController {
     public static async index(req: Request, res: Response) {
-        PostModel.find().populate('user').populate('category').populate({
-            path: 'comments',
-            populate: {
-                path: 'user',
-                select: 'name -_id'
-            }
-        }).then((post) => {
+        PostModel.find().populate('user').populate('category').then((post) => {
             return res.json(post);
         });  
     }
@@ -72,7 +66,7 @@ export default class PostController {
     public static async update(req: Request, res: Response) {
         //TODO: Logica para atualização de um post
         const { token } = req.headers;
-        const { id } = req.params;
+        const { id } = req.params; // id do post
         
     }
 }
