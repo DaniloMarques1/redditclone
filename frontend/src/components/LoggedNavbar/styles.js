@@ -34,19 +34,15 @@ export const Nav = styled.nav `
     li img {
         margin: 0;
     }
-    
-    @media (max-width: 350px) {
+
+    @media (max-width: 400px) {
         ul > li > a {
             font-size: 13px;
         }
-        img {
-            width: 20px;
-            height: 20px;
+        span {
+            display: none;
         }
 
-        span {
-            font-size: 14px;
-        }
     }
 
 `

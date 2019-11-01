@@ -20,7 +20,6 @@ export default function Home({ history }) {
             const response = await api.get('/category');
             setCategories(response.data);
         }
-
         getCategories();
     }, []);
 
@@ -30,7 +29,18 @@ export default function Home({ history }) {
             setPosts(response.data);
         }
         getPosts();
-    }, [])
+    }, []);
+
+    const handleFilter = async (category) => {
+        console.log(category);
+        const url = `/search/post/category?category=${category._id}`;
+        const response = await api.get(url, {
+            headers: {
+                token: localStorage.getItem('token')
+            }
+        });
+        setPosts(response.data);
+    }
 
     return (
         <>
@@ -41,6 +51,7 @@ export default function Home({ history }) {
                 </NewPostButton>
                 <Section>
                     <PostsDiv>
+                        {posts.length === 0 ? (<h1>No posts yet</h1>) : ''}
                         {posts.map(post => (
                             <Post key={post._id}>
                                 <h3>{post.title}</h3>
@@ -62,7 +73,7 @@ export default function Home({ history }) {
                         <h3>Categories</h3>
                         <ul>
                            {categories.map(category => (
-                               <li key={category._id}>{category.name}</li>
+                               <li onClick={() => handleFilter(category)} key={category._id}>{category.name}</li>
                            ))}
                         </ul>
                     </Categories>

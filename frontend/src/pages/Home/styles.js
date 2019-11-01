@@ -49,6 +49,10 @@ export const PostsDiv = styled.div`
         grid-column-start: 1;
         grid-column-end: 2;
     }
+    h1 {
+        text-align: center;
+        margin-top: 15px;
+    }
 `
 
 export const Categories = styled.div`
