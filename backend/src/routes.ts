@@ -28,7 +28,7 @@ routes.get('/post/:id', PostController.show);
 
 //FILTER/SEARCH
 routes.get('/search/post/title', SearchController.getPostFromTitle);
-
+routes.get('/search/post/category', SearchController.getPostFromCategory);
 
 //COMMENTS
 routes.post('/post/:id/comment', CommentController.store);
