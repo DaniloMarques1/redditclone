@@ -15,10 +15,13 @@ export const Container = styled.div `
     border-radius: 3px;
     min-height: 500px;
     h2 {
-        margin-bottom: 10px;
+        margin-bottom: 4px;
         color: #929191;
     }
-
+    span {
+        font-size: 12px;
+        color: #39A038;
+    }
     
     @media (max-width: 700px) {
             padding: 0;

@@ -60,9 +60,11 @@ export default function Home({ history }) {
         <>
             <LoggedNavbar />
             <main>
-                <NewPostButton>
-                    <Link to='/create'>New post</Link>
-                </NewPostButton>
+                <Link to='/create'>
+                    <NewPostButton>
+                        New post
+                    </NewPostButton>
+                </Link>
                 <Section>
                     <CategoriesSelect onChange= {(e) => handleFilter(e.target.value)}>
                         <option value='-1'>all categories</option>
@@ -78,12 +80,12 @@ export default function Home({ history }) {
                                 <h3 onClick={() => handleClickPost(post)}>{post.title}</h3>
                                 <span>Posted by: {post.user.nickName}</span>
                                 <div>
-                                    <span>
+                                    <p>
                                         {
                                             post.content.length > 100 ? (post.content.slice(0, 100)+'...') : (post.content)
                                         }
 
-                                    </span>
+                                    </p>
                                 </div>
                             </Post>
                         ))}

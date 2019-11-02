@@ -104,6 +104,10 @@ export const Post = styled.div`
         padding: 12px;
     }
     span {
+        font-size: 12px;
+        color: #39A038;
+    }
+    p{
         font-size: 14px;
     }
     margin-bottom: 10px;
@@ -112,7 +116,7 @@ export const Post = styled.div`
         h3 {
             font-size: 16px;
         }
-        span {
+        p {
             font-size: 12px;
         }
     }

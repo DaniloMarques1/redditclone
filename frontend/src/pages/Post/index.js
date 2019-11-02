@@ -27,6 +27,7 @@ export default function Post( { history }) {
             });
             const  response = await api.get(`/post/${post._id}`);
             setPost(response.data);
+            setComment('');
 
         } catch(e) {
             console.log(e.response);
@@ -41,6 +42,7 @@ export default function Post( { history }) {
                     <h2>
                         {post.title}
                     </h2>
+                    <span>{post.user.nickName}</span>
                     <Content>
                             {post.content}
                     </Content>
