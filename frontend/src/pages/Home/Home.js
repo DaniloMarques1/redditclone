@@ -76,7 +76,7 @@ export default function Home({ history }) {
                         {posts.map(post => (
                             <Post key={post._id}>
                                 <h3 onClick={() => handleClickPost(post)}>{post.title}</h3>
-                                <span>Author: {post.user.nickName}</span>
+                                <span>Posted by: {post.user.nickName}</span>
                                 <div>
                                     <span>
                                         {
@@ -95,6 +95,7 @@ export default function Home({ history }) {
                     <Categories>
                         <h3>Categories</h3>
                         <ul>
+                            <li onClick={() => handleFilter('-1')}>All categories</li>
                            {categories.map(category => (
                                <li onClick={() => handleFilter(category._id)} key={category._id}>{category.name}</li>
                            ))}
