@@ -28,11 +28,11 @@ export default class PostController {
     public static async show(req: Request, res: Response) {
         const { id } = req.params;
         const post = await PostModel.findById(id)
-        .populate({path: 'user', select:'name -_id'})
+        .populate({path: 'user', select:'nickName -_id'})
         .populate({path: 'category', select:'name -_id'})
         .populate({path: 'comments', populate: {
             path: 'user',
-            select: 'name -_id'
+            select: 'nickName -_id'
         }});
 
         if (!post) {
