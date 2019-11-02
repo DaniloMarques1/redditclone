@@ -44,11 +44,16 @@ export default function Home({ history }) {
                     token: localStorage.getItem('token')
                 }
             });
+            console.log(response.data);
             setPosts(response.data);
         } else {
             getPosts();
         }
 
+    }
+
+    const handleClickPost = async (post) => {
+        history.push('/post', {post: post});
     }
 
     return (
@@ -70,22 +75,22 @@ export default function Home({ history }) {
                         {posts.length === 0 ? (<h1>No posts yet</h1>) : ''}
                         {posts.map(post => (
                             <Post key={post._id}>
-                                <h3>{post.title}</h3>
+                                <h3 onClick={() => handleClickPost(post)}>{post.title}</h3>
                                 <span>Author: {post.user.nickName}</span>
                                 <div>
                                     <span>
                                         {
                                             post.content.length > 100 ? (post.content.slice(0, 100)+'...') : (post.content)
-                                        } 
+                                        }
 
                                     </span>
                                 </div>
                             </Post>
                         ))}
-                        
+
                     </PostsDiv>
-                    
-      
+
+
 
                     <Categories>
                         <h3>Categories</h3>
@@ -98,8 +103,8 @@ export default function Home({ history }) {
 
 
                 </Section>
-                
-                
+
+
             </main>
         </>
     );

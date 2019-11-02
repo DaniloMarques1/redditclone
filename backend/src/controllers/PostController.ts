@@ -5,7 +5,7 @@ import Config from '../config/config';
 
 export default class PostController {
     public static async index(req: Request, res: Response) {
-        PostModel.find().sort({'createdAt': -1}).populate('user').populate('category').then((post) => {
+    PostModel.find().sort({'createdAt': -1}).populate('user').populate('category').populate({path: 'comments', populate: {path: 'user', select: 'nickName'}}).then((post) => {
             return res.json(post);
         });  
     }
