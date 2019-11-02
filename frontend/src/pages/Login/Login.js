@@ -16,7 +16,7 @@ export default function Login({ history }) {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
-
+    document.title = 'Login';
     const handleLogin = async (e) => {
         e.preventDefault();
         try {

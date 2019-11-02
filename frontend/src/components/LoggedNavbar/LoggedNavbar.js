@@ -25,6 +25,12 @@ export default function LoggedNavbar() {
                     </SearchDiv>
                 </li>
                 <li>
+                    <Link to='/'>
+                        Home   
+                    </Link>
+                </li>
+       
+                <li>
                     <Link to='/history'>
                         History
                     </Link>    

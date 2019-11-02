@@ -26,6 +26,7 @@ export default function CreatePost( { history } ) {
     const [content, setContent] = useState('');
     const [categories, setCategories] = useState([{_id: "1" , "name" : "-select a category"}]);
     const [selectedCategory, setSelected] = useState('');
+    document.title = 'New post';
 
     useEffect(() => {
         async function getCatgories() {

@@ -20,7 +20,7 @@ export default function Register({ history }) {
     const [errorMessage, setErrorMessage] = useState('');
     const [errorBackground, setErrorBackground] = useState('');
     const [errorColor, setErrorColor] = useState('');
-
+    document.title = 'Register';
     const handleRegister = async (e) => {
         e.preventDefault();
         

@@ -8,38 +8,47 @@ import {
     PostsDiv,
     Section,
     Categories,
-    Post
+    Post,
+    CategoriesSelect
 } from './styles';
 
 export default function Home({ history }) {
     const [categories, setCategories] = useState([]);
     const [posts, setPosts] = useState([]);
 
+
+    async function getPosts() {
+        const response = await api.get('/post');
+        setPosts(response.data);
+    }
+
+
     useEffect(()=> {
         async function getCategories() {
             const response = await api.get('/category');
             setCategories(response.data);
         }
+
         getCategories();
     }, []);
 
     useEffect(() => {
-        async function getPosts() {
-            const response = await api.get('/post');
-            setPosts(response.data);
-        }
         getPosts();
     }, []);
 
-    const handleFilter = async (category) => {
-        console.log(category);
-        const url = `/search/post/category?category=${category._id}`;
-        const response = await api.get(url, {
-            headers: {
-                token: localStorage.getItem('token')
-            }
-        });
-        setPosts(response.data);
+    const handleFilter = async (id) => {
+        if (id !== '-1') {
+            const url = `/search/post/category?category=${id}`;
+            const response = await api.get(url, {
+                headers: {
+                    token: localStorage.getItem('token')
+                }
+            });
+            setPosts(response.data);
+        } else {
+            getPosts();
+        }
+
     }
 
     return (
@@ -50,6 +59,13 @@ export default function Home({ history }) {
                     <Link to='/create'>New post</Link>
                 </NewPostButton>
                 <Section>
+                    <CategoriesSelect onChange= {(e) => handleFilter(e.target.value)}>
+                        <option value='-1'>all categories</option>
+                        {categories.map(category => (
+                            <option value={category._id} key={category._id}>{category.name}</option>
+                        ))}
+                    </CategoriesSelect>
+
                     <PostsDiv>
                         {posts.length === 0 ? (<h1>No posts yet</h1>) : ''}
                         {posts.map(post => (
@@ -68,15 +84,19 @@ export default function Home({ history }) {
                         ))}
                         
                     </PostsDiv>
+                    
+      
 
                     <Categories>
                         <h3>Categories</h3>
                         <ul>
                            {categories.map(category => (
-                               <li onClick={() => handleFilter(category)} key={category._id}>{category.name}</li>
+                               <li onClick={() => handleFilter(category._id)} key={category._id}>{category.name}</li>
                            ))}
                         </ul>
                     </Categories>
+
+
                 </Section>
                 
                 

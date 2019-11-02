@@ -20,15 +20,20 @@ export const NewPostButton = styled.button`
 export const Section = styled.div`
     display: grid;
     grid-template-columns: 1fr 5fr 2fr;
-    grid-gap: 40px;
+    grid-template-areas: '. PostsDiv Categories';
+    grid-gap: 30px;
     
-    @media (max-width: 800px) {
-        grid-template-columns: 3fr 1fr;
+
+    @media (max-width: 1000px) {
+        grid-template-columns: 2fr 1fr;
         grid-gap: 5px;
+        grid-template-areas: 'PostsDiv Categories';
     }
 
-    @media (max-width: 500px) {
-        grid-template-columns: 1fr;
+    @media (max-width: 600px) {
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: 'CategoriesSelect CategoriesSelect CategoriesSelect'
+                            'PostsDiv PostsDiv PostsDiv';
     }
     
 `
@@ -36,18 +41,14 @@ export const Section = styled.div`
 export const PostsDiv = styled.div`
     background-color: #fff;
     height: 720px;
-    grid-area: 'PostsDiv';
-    grid-column-start: 2;
-    grid-column-end: 2;
+    grid-area: PostsDiv;
     border-radius: 4px;
     @media (max-width: 800px) {
-        grid-column-start: 1;
-        grid-column-end: 2;
+
     }
     
     @media (max-width: 600px) {
-        grid-column-start: 1;
-        grid-column-end: 2;
+
     }
     h1 {
         text-align: center;
@@ -56,8 +57,7 @@ export const PostsDiv = styled.div`
 `
 
 export const Categories = styled.div`
-    grid-column-start: 3;
-    grid-column-end: 4;
+    grid-area: Categories;
     height: 500px;
     background-color: #fff;
     display: flex;
@@ -74,14 +74,12 @@ export const Categories = styled.div`
     ul li {
         line-height: 25px;
         cursor: pointer;
-        color: #3565B0;
     }
     ul li:hover {
         border-bottom: 1px solid #3565B0;
     }
     @media (max-width: 800px) {
-        grid-column-start: 2;
-        grid-column-end: 3;
+
     }
     @media (max-width: 600px) {
         display: none;
@@ -117,5 +115,21 @@ export const Post = styled.div`
         span {
             font-size: 12px;
         }
+    }
+`
+
+export const CategoriesSelect = styled.select `
+    grid-area: CategoriesSelect;
+    
+    border: 1px solid #DEDDDD;
+    outline: none;
+    padding: 10px;
+    display: block;
+    background-color: #fff;
+    border-radius: 4px;
+    width: 100%;
+
+    @media (min-width: 600px) {
+        display: none;
     }
 `

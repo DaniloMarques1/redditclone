@@ -61,5 +61,5 @@ export const Select = styled.select `
     background-color: #fff;
     border-radius: 4px;
     width: 100%;
-    height: 
+    
 `
