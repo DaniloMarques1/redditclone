@@ -22,6 +22,8 @@ const PostSchema = new Schema({
             ref: "Comment"
         }
     ]
+}, {
+    timestamps: true
 });
 
-export const PostModel: Model<PostInterface> = model<PostInterface>('Post', PostSchema);
+export const PostModel = model<PostInterface>('Post', PostSchema);
