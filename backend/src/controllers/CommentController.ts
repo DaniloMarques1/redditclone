@@ -16,10 +16,11 @@ export default class CommentController {
         });
 
         const post = await PostModel.findById(id);
+
         if (post) {
             post.comments.push(Comment);
             await post.save();
-            return res.json(post)
+            return res.json(post);
         }
 
         return res.status(404).json({message: "Post not found"});
