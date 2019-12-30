@@ -2,6 +2,8 @@
 
 Para iniciar a api basta clonar o repositorio, baixar as dependencias com o comando **yarn** e executar o servidor com o comando **yarn dev**.
 
+OBS: As categorias de posts estao sendo inseridas "manualmente", e preciso fazer ums chamada para a rota /category (sem body, metodo post) que ele ira inserir algumas categorias no banco.
+
 ## Endpoints para a api
 
 * POST /user/new - Cria um novo usuario

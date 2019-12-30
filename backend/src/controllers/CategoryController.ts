@@ -9,10 +9,27 @@ export default class CategoryController {
     }
 
     public static async store(req: Request, res:Response) {
-        const { name } = req.body;
-        const category = await CategoryModel.create({
-            name
-        });
+        const categories = [
+            { 
+                name: 'programming'
+            },
+            { 
+                name: 'general'
+            },
+            { 
+                name: 'tv series'
+            },
+            { 
+                name: 'movies'
+            },
+            { 
+                name: 'travel'
+            },
+            { 
+                name: 'food'
+            },
+        ];
+        const category = await CategoryModel.create(...categories);
         
         return res.json(category);
 
